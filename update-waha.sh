@@ -6,13 +6,13 @@
 #
 #  BEFORE RUNNING:
 #  1. Set COMPOSE_DIR to the folder containing your docker-compose.yml
-#     (leave /root if that's where it lives — works in 99% of cases)
+#     (default: /root — works in 99% of cases)
 #  2. Set DOCKER_PASS to your devlikeapro Docker Hub password
 #
 # ─────────────────────────────────────────────────────────────
 
 IMAGE="devlikeapro/waha-plus:latest"
-COMPOSE_DIR="/PATH"          # <-- change if needed (default: /root)
+COMPOSE_DIR="/root"          # <-- change if needed
 DOCKER_USER="devlikeapro"
 DOCKER_PASS="YOUR_PASSWORD"  # <-- required
 
