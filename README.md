@@ -19,25 +19,25 @@ Checks for a new image on Docker Hub and — only if one is found — gracefully
 ### 1. Download the script
 
 ```bash
-curl -o /root/update-waha.sh https://raw.githubusercontent.com/Komorebihost/wahaplus-docker-autoupdate/main/update-waha.sh
-chmod +x /root/update-waha.sh
+curl -o /usr/local/bin/update-waha.sh https://raw.githubusercontent.com/Komorebihost/wahaplus-docker-autoupdate/main/update-waha.sh
+chmod +x /usr/local/bin/update-waha.sh
 ```
 
 ### 2. Edit the two required values
 
 ```bash
-nano /root/update-waha.sh
+nano /usr/local/bin/update-waha.sh
 ```
 
 | Variable | Description |
 |---|---|
-| `COMPOSE_DIR` | Path to the folder containing your `docker-compose.yml`. **Leave `/root` if that's where it is — works in 99% of cases.** |
+| `COMPOSE_DIR` | Path to the folder containing your `docker-compose.yml`. **Default is `/root` — works in 99% of cases.** |
 | `DOCKER_PASS` | Your devlikeapro Docker Hub password |
 
 ### 3. Test it manually
 
 ```bash
-bash /root/update-waha.sh
+bash /usr/local/bin/update-waha.sh
 ```
 
 Expected output when no update is available:
@@ -50,7 +50,7 @@ Removing login credentials for https://index.docker.io/v1/
 
 Run every night at 3:00 AM:
 ```bash
-(crontab -l 2>/dev/null; echo "0 3 * * * /root/update-waha.sh >> /var/log/update-waha.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "0 3 * * * /usr/local/bin/update-waha.sh >> /var/log/update-waha.log 2>&1") | crontab -
 ```
 
 Verify:
@@ -79,7 +79,7 @@ tail -f /var/log/update-waha.log
 > ⚠️ **Your Docker Hub password is stored in plain text inside the script.**
 > Restrict access to root only:
 > ```bash
-> chmod 700 /root/update-waha.sh
+> chmod 700 /usr/local/bin/update-waha.sh
 > ```
 
 > ⚠️ **This script will briefly restart your WAHA stack** when a new image is available. Schedule the cron job during off-peak hours.
