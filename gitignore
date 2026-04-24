@@ -1,0 +1,3 @@
+# ignore local copies with real credentials
+*.local.sh
+.env
